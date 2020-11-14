@@ -44,7 +44,7 @@ func (d Dictionary) Add(word, definition string) error {
 	return nil
 }
 
-// Update methos change the definition
+// Update method change the definition
 func (d Dictionary) Update(word, definition string) error {
 	_, err := d.Search(word)
 
@@ -58,4 +58,9 @@ func (d Dictionary) Update(word, definition string) error {
 	}
 
 	return nil
+}
+
+// Delete method remove the definiton
+func (d Dictionary) Delete(word string) {
+	delete(d, word)
 }
