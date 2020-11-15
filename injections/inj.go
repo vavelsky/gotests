@@ -1,8 +1,8 @@
 package injections
 
 import (
-	"fmt"
 	"io"
+	"net/http"
 	"os"
 )
 
@@ -12,5 +12,9 @@ func main() {
 
 // Greet welcomes
 func Greet(writer io.Writer, name string) {
-	fmt.Fprintf(writer, "Hello, %s", name)
+	http.ListenAndServe(":5000", http.HandlerFunc(MyGreetingHandler))
+}
+
+func MyGreetingHandler(w http.ResponseWriter, r *http.Request) {
+	Greet(w, "world")
 }
