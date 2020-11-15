@@ -1,4 +1,4 @@
-package injections
+package main
 
 import (
 	"io"

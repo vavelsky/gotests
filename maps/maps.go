@@ -1,4 +1,4 @@
-package maps
+package main
 
 // Dictionary is a wrapper over the Search map
 type Dictionary map[string]string
