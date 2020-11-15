@@ -17,24 +17,30 @@ type Sleeper interface {
 	Sleep()
 }
 
+// SpySleeper stores number of Sleep Calls
 type SpySleeper struct {
 	Calls int
 }
 
+// DefaultSleeper is a default struct for Sleep
 type DefaultSleeper struct{}
 
+// CountdownOperationsSpy allows to count the calls for sleep
 type CountdownOperationsSpy struct {
 	Calls []string
 }
 
+// Sleep counts the calls for Sleeper
 func (s *SpySleeper) Sleep() {
 	s.Calls++
 }
 
+// Sleep allows to sleep for 1 second
 func (d *DefaultSleeper) Sleep() {
 	time.Sleep(1 * time.Second)
 }
 
+// Sleep counts calls
 func (c *CountdownOperationsSpy) Sleep() {
 	c.Calls = append(c.Calls, sleep)
 }
