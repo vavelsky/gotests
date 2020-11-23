@@ -27,11 +27,12 @@ func (d *DefaultSleeper) Sleep() {
 func Countdown(out io.Writer, sleeper Sleeper) {
 	for i := startCount; i > 0; i-- {
 		sleeper.Sleep()
-	}
-
-	for i := startCount; i > 0; i-- {
 		fmt.Fprintln(out, i)
 	}
+
+	// for i := startCount; i > 0; i-- {
+	// 	fmt.Fprintln(out, i)
+	// }
 	sleeper.Sleep()
 	fmt.Fprint(out, finalWord)
 }
