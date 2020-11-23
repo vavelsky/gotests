@@ -9,64 +9,18 @@ import (
 
 const finalWord = "Go!"
 const startCount = 3
-const write = "write"
-const sleep = "sleep"
 
 // Sleeper allows to put delays
 type Sleeper interface {
 	Sleep()
 }
 
-// SpySleeper stores number of Sleep Calls
-type SpySleeper struct {
-	Calls int
-}
-
 // DefaultSleeper is a default struct for Sleep
 type DefaultSleeper struct{}
-
-// CountdownOperationsSpy allows to count the calls for sleep
-type CountdownOperationsSpy struct {
-	Calls []string
-}
-
-// ConfigurableSleeper can be configured
-type ConfigurableSleeper struct {
-	duration time.Duration
-	sleep    func(time.Duration)
-}
-
-// SpyTime is a spy
-type SpyTime struct {
-	durationSlept time.Duration
-}
-
-//Sleep for checking up the actual sleep time
-func (s *SpyTime) Sleep(duration time.Duration) {
-	s.durationSlept = duration
-}
-
-// Sleep for ConfigurableSleeper
-func (c *ConfigurableSleeper) Sleep() {}
-
-// Sleep counts the calls for Sleeper
-func (s *SpySleeper) Sleep() {
-	s.Calls++
-}
 
 // Sleep allows to sleep for 1 second
 func (d *DefaultSleeper) Sleep() {
 	time.Sleep(1 * time.Second)
-}
-
-// Sleep counts calls
-func (c *CountdownOperationsSpy) Sleep() {
-	c.Calls = append(c.Calls, sleep)
-}
-
-func (c *CountdownOperationsSpy) Write(p []byte) (n int, err error) {
-	c.Calls = append(c.Calls, write)
-	return
 }
 
 // Countdown counts from the number to zero and prints Go!
