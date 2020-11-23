@@ -30,6 +30,25 @@ type CountdownOperationsSpy struct {
 	Calls []string
 }
 
+// ConfigurableSleeper can be configured
+type ConfigurableSleeper struct {
+	duration time.Duration
+	sleep    func(time.Duration)
+}
+
+// SpyTime is a spy
+type SpyTime struct {
+	durationSlept time.Duration
+}
+
+//Sleep for checking up the actual sleep time
+func (s *SpyTime) Sleep(duration time.Duration) {
+	s.durationSlept = duration
+}
+
+// Sleep for ConfigurableSleeper
+func (c *ConfigurableSleeper) Sleep() {}
+
 // Sleep counts the calls for Sleeper
 func (s *SpySleeper) Sleep() {
 	s.Calls++
