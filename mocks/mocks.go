@@ -15,9 +15,6 @@ type Sleeper interface {
 	Sleep()
 }
 
-// DefaultSleeper is a default struct for Sleep
-type DefaultSleeper struct{}
-
 // ConfigurableSleeper is configurabale version of putting delays
 type ConfigurableSleeper struct {
 	duration time.Duration
@@ -27,11 +24,6 @@ type ConfigurableSleeper struct {
 // Sleep for configurable sleeper
 func (c *ConfigurableSleeper) Sleep() {
 	c.sleep(c.duration)
-}
-
-// Sleep allows to sleep for 1 second
-func (d *DefaultSleeper) Sleep() {
-	time.Sleep(1 * time.Second)
 }
 
 // Countdown counts from the number to zero and prints Go!
